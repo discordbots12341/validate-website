@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>K&J Superstore</title>
 <style>
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
@@ -173,11 +173,11 @@ body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
 <!-- PAGE 1: COVER -->
 <div class="page cover">
   <div class="logo-section">
-    <img class="logo-img" src="/mnt/user-data/uploads/Screenshot_2026-05-29_11_30_02_AM.png" alt="K&J Superstore Logo">
+    <img class="logo-img" src="data:image/png;base64,${LOGO_B64}" alt="K&J Superstore Logo">
   </div>
   <div class="manager-section">
     <div class="manager-photo">
-      <img src="/mnt/user-data/uploads/cd2502ccaae9d64914759aabcc25bf4a.jpeg" alt="Manager Wendy">
+      <img src="data:image/jpeg;base64,${MANAGER_B64}" alt="Manager Wendy">
     </div>
     <div class="manager-text">
       <div class="manager-label">Onze manager</div>
@@ -190,10 +190,9 @@ body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
 <div class="page product-page">
   <div class="products-grid">
 
-    <!-- ITEM 1: GRAPES -->
     <div class="product-item">
       <div class="star-container">
-        <svg viewBox="0 0 320 300" xmlns="http://w3.org">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="d1" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
               <circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/>
@@ -207,13 +206,12 @@ body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
         <div class="product-img">🍇</div>
       </div>
       <div class="prod-name">Traube</div>
-      <div class="prod-price">3$</div>
+      <div class="prod-price">3\$</div>
     </div>
 
-    <!-- ITEM 2: ORANGE -->
     <div class="product-item">
       <div class="star-container">
-        <svg viewBox="0 0 320 300" xmlns="http://w3.org">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="d2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern>
             <clipPath id="c2"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
@@ -225,13 +223,12 @@ body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
         <div class="product-img">🍊</div>
       </div>
       <div class="prod-name">Orange</div>
-      <div class="prod-price">0,90$</div>
+      <div class="prod-price">0,90\$</div>
     </div>
 
-    <!-- ITEM 3: CUCUMBER -->
     <div class="product-item">
       <div class="star-container">
-        <svg viewBox="0 0 320 300" xmlns="http://w3.org">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="d3" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern>
             <clipPath id="c3"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
@@ -243,13 +240,12 @@ body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
         <div class="product-img">🥒</div>
       </div>
       <div class="prod-name">Gurke</div>
-      <div class="prod-price">1,50$</div>
+      <div class="prod-price">1,50\$</div>
     </div>
 
-    <!-- ITEM 4: APPLE -->
     <div class="product-item">
       <div class="star-container">
-        <svg viewBox="0 0 320 300" xmlns="http://w3.org">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="d4" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern>
             <clipPath id="c4"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
@@ -258,10 +254,199 @@ body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
           <rect x="0" y="0" width="320" height="300" fill="url(#d4)" clip-path="url(#c4)"/>
           <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
         </svg>
-        <div class="product-img">🍎</div>
+        <div class="product-img">🍅</div>
       </div>
-      <div class="prod-name">Apfel</div>
-      <div class="prod-price">1,20$</div>
+      <div class="prod-name">Tomate</div>
+      <div class="prod-price">2,40\$</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAGE 3: MILCH & GETRÄNKE -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d5" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c5"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d5)" clip-path="url(#c5)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥛</div>
+      </div>
+      <div class="prod-name">Frische Milch</div>
+      <div class="prod-price">2,40\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d6" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c6"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d6)" clip-path="url(#c6)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🧀</div>
+      </div>
+      <div class="prod-name">Käse</div>
+      <div class="prod-price">7\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d7" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c7"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d7)" clip-path="url(#c7)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍦</div>
+      </div>
+      <div class="prod-name">Eis</div>
+      <div class="prod-price">2,60\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d8" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c8"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d8)" clip-path="url(#c8)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥤</div>
+      </div>
+      <div class="prod-name">Smoothie</div>
+      <div class="prod-price">4,00\$</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAGE 4: FLEISCH & WURST -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d9" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c9"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d9)" clip-path="url(#c9)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍗</div>
+      </div>
+      <div class="prod-name">Hähnchen</div>
+      <div class="prod-price">5,90\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d10" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c10"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d10)" clip-path="url(#c10)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🌭</div>
+      </div>
+      <div class="prod-name">Bratwurst</div>
+      <div class="prod-price">3,50\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d11" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c11"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d11)" clip-path="url(#c11)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥓</div>
+      </div>
+      <div class="prod-name">Schinken</div>
+      <div class="prod-price">4,80\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d12" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c12"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d12)" clip-path="url(#c12)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥩</div>
+      </div>
+      <div class="prod-name">Rindfleisch</div>
+      <div class="prod-price">8,50\$</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAGE 5: BROT & SNACKS -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d13" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c13"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d13)" clip-path="url(#c13)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥖</div>
+      </div>
+      <div class="prod-name">Brot</div>
+      <div class="prod-price">2,20\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d14" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c14"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d14)" clip-path="url(#c14)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥨</div>
+      </div>
+      <div class="prod-name">Brezel</div>
+      <div class="prod-price">1,50\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d15" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c15"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d15)" clip-path="url(#c15)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍟</div>
+      </div>
+      <div class="prod-name">Chips</div>
+      <div class="prod-price">2,80\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d16" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c16"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d16)" clip-path="url(#c16)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍪</div>
+      </div>
+      <div class="prod-name">Keks</div>
+      <div class="prod-price">1,90\$</div>
     </div>
 
   </div>
