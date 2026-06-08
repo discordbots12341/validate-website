@@ -1,1242 +1,460 @@
+MANAGER_B64=$(base64 -w 0 /mnt/user-data/uploads/cd2502ccaae9d64914759aabcc25bf4a.jpeg)
+LOGO_B64=$(base64 -w 0 /mnt/user-data/uploads/Screenshot_2026-05-29_11_30_02_AM.png)
+
+cat > /mnt/user-data/outputs/KJ_Superstore_Final.html << HTMLEOF
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VALIDATE — The Ultimate Discord Bot</title>
-<meta name="description" content="The all-in-one Discord bot for serious communities. Tickets, moderation, leveling, TikTok tracking, Minecraft integration and more.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<title>K&J Superstore</title>
 <style>
-:root {
-  --bg: #080810;
-  --surface: #0f0f1a;
-  --surface2: #16162a;
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(255,255,255,0.12);
-  --text: #f0effe;
-  --text-muted: rgba(240,239,254,0.45);
-  --text-dim: rgba(240,239,254,0.25);
-  --accent: #7B6FF0;
-  --accent-light: #a99ef5;
-  --accent-glow: rgba(123,111,240,0.15);
-  --green: #4ade80;
-  --green-bg: rgba(74,222,128,0.08);
-  --amber: #fbbf24;
-  --red: #f87171;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#aaa; font-family:'Lato', Arial, sans-serif; }
+
+.page {
+  width: 794px;
+  min-height: 1123px;
+  margin: 30px auto;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+  position: relative;
+  overflow: hidden;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Epilogue', sans-serif;
-  font-weight: 300;
-  line-height: 1.6;
-  overflow-x: hidden;
+/* ===== COVER ===== */
+.cover {
+  background: #f0e8d2;
+  display: flex;
+  flex-direction: column;
 }
-
-/* GRID BG */
-body::before {
+.cover::before {
   content: '';
-  position: fixed;
+  position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(123,111,240,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(123,111,240,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+    repeating-linear-gradient(45deg, rgba(139,90,43,0.04) 0px, transparent 2px, transparent 10px),
+    repeating-linear-gradient(-45deg, rgba(139,90,43,0.04) 0px, transparent 2px, transparent 10px);
   pointer-events: none;
   z-index: 0;
 }
 
-/* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 2.5rem;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(8,8,16,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-
-.logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  color: var(--text);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 400;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--text); }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0.55rem 1.2rem;
-  border-radius: 6px;
-  font-family: 'Epilogue', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: none;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-}
-
-.btn-ghost:hover {
-  border-color: var(--border-hover);
-  color: var(--text);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #6b5fe0;
-  transform: translateY(-1px);
-}
-
-/* HERO */
-.hero {
+.logo-section {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  width: 100%;
+  padding: 20px 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 7rem 2rem 5rem;
 }
 
-.hero-orb {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(123,111,240,0.12) 0%, transparent 65%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.hero-orb2 {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(74,222,128,0.06) 0%, transparent 70%);
-  top: 30%;
-  right: 20%;
-  pointer-events: none;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-glow);
-  border: 1px solid rgba(123,111,240,0.2);
-  color: var(--accent-light);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  margin-bottom: 2rem;
-  animation: fadeUp 0.6s ease 0.1s both;
-}
-
-.hero-eyebrow span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 6px var(--green);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  max-width: 800px;
-  margin-bottom: 1.5rem;
-  animation: fadeUp 0.6s ease 0.2s both;
-}
-
-.hero h1 .accent {
-  color: var(--accent-light);
-  font-style: italic;
-  font-weight: 600;
-}
-
-.hero-sub {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 520px;
-  line-height: 1.75;
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.6s ease 0.3s both;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 4rem;
-  animation: fadeUp 0.6s ease 0.4s both;
-}
-
-.btn-lg {
-  padding: 0.8rem 2rem;
-  font-size: 0.95rem;
-  border-radius: 8px;
-}
-
-.hero-numbers {
-  display: flex;
-  gap: 4rem;
-  animation: fadeUp 0.6s ease 0.5s both;
-  border-top: 1px solid var(--border);
-  padding-top: 3rem;
-}
-
-.hero-num { text-align: center; }
-
-.hero-num-val {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--text);
+.logo-img {
+  width: 100%;
+  max-width: 754px;
   display: block;
+  border-radius: 6px;
 }
 
-.hero-num-label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-}
-
-/* SECTIONS */
-section {
+.manager-section {
   position: relative;
   z-index: 1;
-  padding: 6rem 2rem;
-}
-
-.container { max-width: 1100px; margin: 0 auto; }
-
-.section-eyebrow {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 0.75rem;
-}
-
-.section-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.15;
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
-}
-
-.section-sub {
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.75;
-  max-width: 480px;
-}
-
-/* FEATURES */
-.features-section { background: rgba(255,255,255,0.01); }
-
-.features-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3rem;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.feat {
-  background: var(--surface);
-  padding: 1.75rem;
-  transition: background 0.2s;
-  position: relative;
-}
-
-.feat:hover { background: var(--surface2); }
-
-.feat-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
+  background: white;
+  flex: 1;
   display: flex;
   align-items: center;
+  padding: 36px 44px 30px;
+  gap: 36px;
+}
+
+.manager-photo {
+  width: 280px;
+  height: 290px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 3px 3px 14px rgba(0,0,0,0.2);
+  transform: rotate(-2deg);
+}
+
+.manager-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.manager-text {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
 }
 
-.feat h3 {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text);
+.manager-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: #111;
+  line-height: 1.15;
+}
+.manager-name {
+  font-family: 'Lato', sans-serif;
+  font-size: 52px;
+  font-weight: 400;
+  color: #111;
+  line-height: 1.15;
 }
 
-.feat p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.65;
+/* ===== PRODUCT PAGES ===== */
+.product-page {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px 20px;
 }
 
-.feat-tag {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  margin-top: 0.8rem;
-}
-
-.tag-free { background: var(--green-bg); color: var(--green); }
-.tag-pro { background: var(--accent-glow); color: var(--accent-light); }
-.tag-ent { background: rgba(251,191,36,0.08); color: var(--amber); }
-.tag-addon { background: rgba(248,113,113,0.08); color: var(--red); }
-
-/* TICKET SHOWCASE */
-.ticket-showcase {
+.products-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  gap: 0px 10px;
 }
 
-.ticket-visual {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.ticket-bar {
-  background: var(--surface2);
-  padding: 0.6rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  border-bottom: 1px solid var(--border);
-}
-
-.tb-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.ticket-body { padding: 1.25rem; }
-
-.ticket-msg {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.8rem;
-}
-
-.ticket-msg-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 0.4rem;
-}
-
-.ticket-avatar {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.55rem;
-  font-weight: 700;
-}
-
-.ticket-username { font-size: 0.78rem; font-weight: 600; color: var(--text); }
-.ticket-bot-tag {
-  font-size: 0.6rem;
-  background: var(--accent);
-  color: white;
-  padding: 0 4px;
-  border-radius: 3px;
-  font-weight: 600;
-}
-
-.ticket-text { font-size: 0.78rem; color: var(--text-muted); }
-
-.ticket-buttons {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 0.75rem;
-}
-
-.tb {
-  padding: 0.3rem 0.7rem;
-  border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 500;
-  border: none;
-  cursor: default;
-}
-
-.tb-red { background: rgba(248,113,113,0.15); color: var(--red); }
-.tb-green { background: var(--green-bg); color: var(--green); }
-.tb-gray { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
-
-.ticket-features {
+.product-item {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-}
-
-.tf-item {
-  display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 0.75rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  padding: 0 8px;
 }
 
-.tf-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 6px;
-  background: var(--accent-glow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-
-.tf-name { font-size: 0.85rem; font-weight: 500; color: var(--text); }
-.tf-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 1px; }
-
-/* COMMANDS */
-.cmds-filter {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.cmd-filter-btn {
-  padding: 0.35rem 0.9rem;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: 'Epilogue', sans-serif;
-}
-
-.cmd-filter-btn:hover, .cmd-filter-btn.active {
-  background: var(--accent-glow);
-  border-color: rgba(123,111,240,0.3);
-  color: var(--accent-light);
-}
-
-.cmds-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 8px;
-}
-
-.cmd-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.9rem 1.1rem;
-  transition: border-color 0.15s;
-}
-
-.cmd-card:hover { border-color: var(--border-hover); }
-
-.cmd-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent-light);
-  margin-bottom: 0.3rem;
-}
-
-.cmd-desc {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.cmd-badge {
-  font-size: 0.65rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 3px;
-  margin-top: 0.5rem;
-  display: inline-block;
-  font-weight: 500;
-}
-
-/* PRICING */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 3rem;
-}
-
-.plan {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
+.star-container {
   position: relative;
-  transition: border-color 0.2s;
+  width: 320px;
+  height: 300px;
+  margin-bottom: 4px;
 }
 
-.plan:hover { border-color: var(--border-hover); }
-
-.plan.featured {
-  border-color: rgba(123,111,240,0.4);
-  background: var(--surface2);
-}
-
-.plan-popular {
+.star-container svg {
   position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
-  color: white;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.9rem;
-  border-radius: 100px;
-  white-space: nowrap;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
 }
 
-.plan-tier {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-}
-
-.plan-price {
-  font-family: 'Syne', sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-
-.plan-price sub {
-  font-size: 1rem;
-  font-family: 'Epilogue', sans-serif;
-  font-weight: 300;
-  color: var(--text-muted);
-}
-
-.plan-desc {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 1.75rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.plan-feats { list-style: none; margin-bottom: 2rem; }
-
-.plan-feats li {
-  font-size: 0.85rem;
-  padding: 0.4rem 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-muted);
-}
-
-.plan-feats li:last-child { border-bottom: none; }
-
-.plan-feats li.on { color: var(--text); }
-
-.plan-feats li .check { color: var(--green); font-size: 0.9rem; }
-.plan-feats li .cross { color: var(--text-dim); font-size: 0.9rem; }
-
-.plan-btn {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  text-align: center;
-  border-radius: 8px;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.plan-btn-outline {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.plan-btn-outline:hover { border-color: var(--border-hover); }
-
-.plan-btn-accent {
-  background: var(--accent);
-  border: 1px solid transparent;
-  color: white;
-}
-
-.plan-btn-accent:hover { background: #6b5fe0; }
-
-/* CTA */
-.cta-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 4rem 3rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-wrap::before {
-  content: '';
+.product-img {
   position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(123,111,240,0.08) 0%, transparent 70%);
+  z-index: 3;
+  font-size: 128px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+  transform: translate(-50%, -56%);
+  line-height: 1;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.12));
 }
 
-.cta-wrap h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  position: relative;
+.prod-name {
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111;
+  margin-left: 12px;
+  line-height: 1.2;
+}
+.prod-price {
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #111;
+  margin-left: 12px;
 }
 
-.cta-wrap p {
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-/* FOOTER */
-footer {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--border);
-  padding: 2rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  text-decoration: none;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-
-.footer-links a {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover { color: var(--text); }
-
-.footer-copy {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .features-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .ticket-showcase { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .hero-numbers { gap: 2rem; }
+@media print {
+  body { background: white; }
+  .page { margin:0; box-shadow:none; page-break-after:always; width:100%; }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo"><div class="logo-dot"></div>VALIDATE</a>
-  <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#tickets">Tickets</a></li>
-    <li><a href="#commands">Commands</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-  </ul>
-  <div class="nav-right">
-    <a href="https://panel.validate-bot.com" class="btn btn-ghost">Dashboard</a>
-    <a href="#add" class="btn btn-primary">Add to Discord</a>
+<!-- PAGE 1: COVER -->
+<div class="page cover">
+  <div class="logo-section">
+    <img class="logo-img" src="data:image/png;base64,${LOGO_B64}" alt="K&J Superstore Logo">
   </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-orb"></div>
-  <div class="hero-orb2"></div>
-  <div class="hero-eyebrow"><span></span> Now available — Free plan included</div>
-  <h1>The Discord bot that <span class="accent">actually works</span></h1>
-  <p class="hero-sub">Tickets, moderation, leveling, TikTok tracking, Minecraft integration and more — all in one bot, one dashboard, one subscription.</p>
-  <div class="hero-actions">
-    <a href="#add" class="btn btn-primary btn-lg">Add to Discord — It's free</a>
-    <a href="https://panel.validate-bot.com" class="btn btn-ghost btn-lg">Open Dashboard →</a>
-  </div>
-  <div class="hero-numbers">
-    <div class="hero-num"><span class="hero-num-val">50+</span><span class="hero-num-label">Commands</span></div>
-    <div class="hero-num"><span class="hero-num-val">4</span><span class="hero-num-label">Languages</span></div>
-    <div class="hero-num"><span class="hero-num-val">15+</span><span class="hero-num-label">Modules</span></div>
-    <div class="hero-num"><span class="hero-num-val">3</span><span class="hero-num-label">Plans</span></div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features" class="features-section">
-  <div class="container">
-    <div class="features-header fade-in">
-      <div>
-        <div class="section-eyebrow">Features</div>
-        <h2 class="section-title">Everything your server needs</h2>
-      </div>
-      <p class="section-sub">From ticket management to TikTok live alerts — VALIDATE handles it all so you can focus on your community.</p>
+  <div class="manager-section">
+    <div class="manager-photo">
+      <img src="data:image/jpeg;base64,${MANAGER_B64}" alt="Manager Wendy">
     </div>
-    <div class="features-grid fade-in">
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(123,111,240,0.12);color:#a99ef5">🎫</div>
-        <h3>Advanced Ticket System</h3>
-        <p>Dropdown categories, problem descriptions, VIP priority, queue system, transcripts, auto-close and ratings.</p>
-        <span class="feat-tag tag-free">Free</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80">✅</div>
-        <h3>Verify System</h3>
-        <p>One-click verification button to keep bots and alt accounts out. Configurable per server.</p>
-        <span class="feat-tag tag-free">Free</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(248,113,113,0.1);color:#f87171">🛡️</div>
-        <h3>Auto-Moderation</h3>
-        <p>Anti-nuke, anti-raid and anti-spam protection with auto-lockdown, alt detection and warning system.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80">⚔️</div>
-        <h3>Minecraft Integration</h3>
-        <p>Live server status, player count, latency, maintenance toggle and Discord-to-Minecraft command execution.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(123,111,240,0.12);color:#a99ef5">⭐</div>
-        <h3>Leveling System</h3>
-        <p>XP earned by chatting, level-up announcements with progress bars, leaderboards and role rewards.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24">🎁</div>
-        <h3>Giveaways</h3>
-        <p>Timed giveaways with automatic winner selection, multiple winners and reroll support.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(123,111,240,0.12);color:#a99ef5">🌐</div>
-        <h3>Multi-Language</h3>
-        <p>Full support for English, Dutch, German and French. Set the language per server with one command.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80">📊</div>
-        <h3>Server Stats Channels</h3>
-        <p>Live voice channels showing member count, online members and bot count. Updates every 10 minutes.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24">⭐</div>
-        <h3>Starboard</h3>
-        <p>Automatically highlight the best messages in your server when they get enough star reactions.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(123,111,240,0.12);color:#a99ef5">🎭</div>
-        <h3>Reaction Roles</h3>
-        <p>Let members assign themselves roles by reacting to a message. Fully configurable per emoji.</p>
-        <span class="feat-tag tag-free">Free</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80">📋</div>
-        <h3>Staff Applications</h3>
-        <p>Modal-based application forms with accept/deny buttons for staff. Notifications sent automatically.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(248,113,113,0.1);color:#f87171">📱</div>
-        <h3>TikTok Live Tracking</h3>
-        <p>Instant alerts when creators go live on TikTok. Role pings, offline messages, multi-creator support.</p>
-        <span class="feat-tag tag-addon">Add-on</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(123,111,240,0.12);color:#a99ef5">💬</div>
-        <h3>Custom Commands</h3>
-        <p>Add your own trigger → response commands. No coding needed — configure via the web panel.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(74,222,128,0.1);color:#4ade80">🎂</div>
-        <h3>Birthday System</h3>
-        <p>Members set their birthday, bot announces it on the day with a special message and optional role.</p>
-        <span class="feat-tag tag-pro">Pro</span>
-      </div>
-      <div class="feat">
-        <div class="feat-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24">💡</div>
-        <h3>Suggestions</h3>
-        <p>Structured suggestion system with upvote/downvote and staff accept/deny responses.</p>
-        <span class="feat-tag tag-free">Free</span>
-      </div>
+    <div class="manager-text">
+      <div class="manager-label">Onze manager</div>
+      <div class="manager-name">Wen-dy</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- TICKET SHOWCASE -->
-<section id="tickets">
-  <div class="container">
-    <div class="ticket-showcase fade-in">
-      <div>
-        <div class="section-eyebrow">Ticket System</div>
-        <h2 class="section-title">The most complete ticket system</h2>
-        <p class="section-sub" style="margin-bottom:2rem">Every feature you'd want in a ticket system — built in, configurable via the web panel.</p>
-        <div class="ticket-features">
-          <div class="tf-item">
-            <div class="tf-icon">📂</div>
-            <div><div class="tf-name">Dropdown categories</div><div class="tf-desc">Users pick a category and describe their issue before the ticket is created</div></div>
-          </div>
-          <div class="tf-item">
-            <div class="tf-icon">⏳</div>
-            <div><div class="tf-name">Queue system</div><div class="tf-desc">When the system is busy, users are placed in a queue and notified when it's their turn</div></div>
-          </div>
-          <div class="tf-item">
-            <div class="tf-icon">👑</div>
-            <div><div class="tf-name">VIP priority</div><div class="tf-desc">VIP role members automatically get high priority tickets</div></div>
-          </div>
-          <div class="tf-item">
-            <div class="tf-icon">📄</div>
-            <div><div class="tf-name">Transcripts + ratings</div><div class="tf-desc">Full transcript saved on close, user gets a rating DM automatically</div></div>
-          </div>
-          <div class="tf-item">
-            <div class="tf-icon">⏱️</div>
-            <div><div class="tf-name">Auto-close</div><div class="tf-desc">Tickets automatically close after a configurable period of inactivity</div></div>
-          </div>
-        </div>
+<!-- PAGE 2: OBST & GEMÜSE -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="d1" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/>
+            </pattern>
+            <clipPath id="c1"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
+          </defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d1)" clip-path="url(#c1)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍇</div>
       </div>
-      <div class="ticket-visual">
-        <div class="ticket-bar">
-          <div class="tb-dot" style="background:#f87171"></div>
-          <div class="tb-dot" style="background:#fbbf24"></div>
-          <div class="tb-dot" style="background:#4ade80"></div>
-          <span style="font-size:0.72rem;color:var(--text-muted);margin-left:8px"># ticket-0001-alex</span>
-        </div>
-        <div class="ticket-body">
-          <div class="ticket-msg">
-            <div class="ticket-msg-header">
-              <div class="ticket-avatar" style="background:rgba(123,111,240,0.2);color:#a99ef5">V</div>
-              <span class="ticket-username">VALIDATE</span>
-              <span class="ticket-bot-tag">BOT</span>
-            </div>
-            <div style="margin-bottom:6px">
-              <span style="font-size:0.72rem;font-weight:600;color:var(--text)">🎫 General Support — #0001</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-bottom:8px">
-              <div style="background:var(--surface);border-radius:4px;padding:4px 6px;font-size:0.68rem;color:var(--text-muted)">👤 <span style="color:var(--text)">alex</span></div>
-              <div style="background:var(--surface);border-radius:4px;padding:4px 6px;font-size:0.68rem;color:var(--text-muted)">📂 <span style="color:var(--text)">Support</span></div>
-              <div style="background:var(--surface);border-radius:4px;padding:4px 6px;font-size:0.68rem;color:var(--text-muted)">⚡ <span style="color:#fbbf24">Medium</span></div>
-            </div>
-            <div style="background:var(--surface);border-radius:4px;padding:6px 8px;font-size:0.72rem;color:var(--text-muted)">📝 <span style="color:var(--text)">I can't connect to the Minecraft server, keeps giving a timeout error.</span></div>
-          </div>
-          <div class="ticket-buttons">
-            <button class="tb tb-red">🔒 Close</button>
-            <button class="tb tb-green">👤 Claim</button>
-            <button class="tb tb-gray">⬆️ Priority</button>
-            <button class="tb tb-gray">➕ Add</button>
-            <button class="tb tb-gray">➖ Remove</button>
-            <button class="tb tb-gray">✏️ Rename</button>
-          </div>
-        </div>
-      </div>
+      <div class="prod-name">Traube</div>
+      <div class="prod-price">3\$</div>
     </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="d2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern>
+            <clipPath id="c2"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
+          </defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d2)" clip-path="url(#c2)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍊</div>
+      </div>
+      <div class="prod-name">Orange</div>
+      <div class="prod-price">0,90\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="d3" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern>
+            <clipPath id="c3"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
+          </defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d3)" clip-path="url(#c3)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥒</div>
+      </div>
+      <div class="prod-name">Gurke</div>
+      <div class="prod-price">1,50\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="d4" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern>
+            <clipPath id="c4"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath>
+          </defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d4)" clip-path="url(#c4)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍅</div>
+      </div>
+      <div class="prod-name">Tomate</div>
+      <div class="prod-price">2,40\$</div>
+    </div>
+
   </div>
-</section>
+</div>
 
-<!-- COMMANDS -->
-<section id="commands" style="background:rgba(255,255,255,0.01)">
-  <div class="container">
-    <div class="fade-in" style="margin-bottom:2.5rem">
-      <div class="section-eyebrow">Commands</div>
-      <h2 class="section-title">All slash commands</h2>
-      <p class="section-sub">Every command works as a Discord slash command — just type / and everything auto-completes.</p>
+<!-- PAGE 3: MILCH & GETRÄNKE -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d5" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c5"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d5)" clip-path="url(#c5)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥛</div>
+      </div>
+      <div class="prod-name">Frische Milch</div>
+      <div class="prod-price">2,40\$</div>
     </div>
-    <div class="cmds-filter fade-in" id="filter">
-      <button class="cmd-filter-btn active" onclick="filterCmds('all',this)">All</button>
-      <button class="cmd-filter-btn" onclick="filterCmds('tickets',this)">Tickets</button>
-      <button class="cmd-filter-btn" onclick="filterCmds('moderation',this)">Moderation</button>
-      <button class="cmd-filter-btn" onclick="filterCmds('community',this)">Community</button>
-      <button class="cmd-filter-btn" onclick="filterCmds('minecraft',this)">Minecraft</button>
-      <button class="cmd-filter-btn" onclick="filterCmds('admin',this)">Admin</button>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d6" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c6"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d6)" clip-path="url(#c6)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🧀</div>
+      </div>
+      <div class="prod-name">Käse</div>
+      <div class="prod-price">7\$</div>
     </div>
-    <div class="cmds-grid fade-in" id="cmds-grid"></div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d7" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c7"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d7)" clip-path="url(#c7)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍦</div>
+      </div>
+      <div class="prod-name">Eis</div>
+      <div class="prod-price">2,60\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d8" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c8"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d8)" clip-path="url(#c8)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥤</div>
+      </div>
+      <div class="prod-name">Smoothie</div>
+      <div class="prod-price">4,00\$</div>
+    </div>
+
   </div>
-</section>
+</div>
 
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;margin-bottom:1rem">
-      <div class="section-eyebrow">Pricing</div>
-      <h2 class="section-title">Start free, scale when ready</h2>
-      <p class="section-sub" style="margin:0 auto">One subscription per server. Upgrade or downgrade any time. No contracts.</p>
+<!-- PAGE 4: FLEISCH & WURST -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d9" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c9"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d9)" clip-path="url(#c9)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍗</div>
+      </div>
+      <div class="prod-name">Hähnchen</div>
+      <div class="prod-price">5,90\$</div>
     </div>
-    <div class="pricing-grid fade-in">
-      <div class="plan">
-        <div class="plan-tier">Free</div>
-        <div class="plan-price">€0<sub>/mo</sub></div>
-        <div class="plan-desc">1 server · forever free</div>
-        <ul class="plan-feats">
-          <li class="on"><span class="check">✓</span> Ticket system</li>
-          <li class="on"><span class="check">✓</span> Verify button</li>
-          <li class="on"><span class="check">✓</span> Auto-role on join</li>
-          <li class="on"><span class="check">✓</span> Welcome messages</li>
-          <li class="on"><span class="check">✓</span> Polls</li>
-          <li class="on"><span class="check">✓</span> Reaction roles</li>
-          <li class="on"><span class="check">✓</span> Suggestions</li>
-          <li><span class="cross">✗</span> Leveling system</li>
-          <li><span class="cross">✗</span> Giveaways</li>
-          <li><span class="cross">✗</span> Minecraft status</li>
-          <li><span class="cross">✗</span> Analytics</li>
-        </ul>
-        <a href="#add" class="plan-btn plan-btn-outline">Get started free</a>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d10" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c10"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d10)" clip-path="url(#c10)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🌭</div>
       </div>
-      <div class="plan featured">
-        <div class="plan-popular">Most Popular</div>
-        <div class="plan-tier">Pro</div>
-        <div class="plan-price">€9<sub>.99/mo</sub></div>
-        <div class="plan-desc">Up to 3 servers · all core features</div>
-        <ul class="plan-feats">
-          <li class="on"><span class="check">✓</span> Everything in Free</li>
-          <li class="on"><span class="check">✓</span> Leveling + leaderboard</li>
-          <li class="on"><span class="check">✓</span> Giveaways</li>
-          <li class="on"><span class="check">✓</span> Minecraft status</li>
-          <li class="on"><span class="check">✓</span> Anti-nuke / anti-raid</li>
-          <li class="on"><span class="check">✓</span> Stats channels</li>
-          <li class="on"><span class="check">✓</span> Multi-language</li>
-          <li class="on"><span class="check">✓</span> Staff applications</li>
-          <li class="on"><span class="check">✓</span> Starboard</li>
-          <li class="on"><span class="check">✓</span> Birthday system</li>
-          <li><span class="cross">✗</span> AI features</li>
-        </ul>
-        <a href="https://panel.validate-bot.com" class="plan-btn plan-btn-accent">Upgrade to Pro</a>
-      </div>
-      <div class="plan">
-        <div class="plan-tier">Enterprise</div>
-        <div class="plan-price">€24<sub>.99/mo</sub></div>
-        <div class="plan-desc">Unlimited servers · all features</div>
-        <ul class="plan-feats">
-          <li class="on"><span class="check">✓</span> Everything in Pro</li>
-          <li class="on"><span class="check">✓</span> AI ticket priority</li>
-          <li class="on"><span class="check">✓</span> AI auto-respond</li>
-          <li class="on"><span class="check">✓</span> MC command execution</li>
-          <li class="on"><span class="check">✓</span> Staff manager</li>
-          <li class="on"><span class="check">✓</span> Economy system</li>
-          <li class="on"><span class="check">✓</span> Custom bot name</li>
-          <li class="on"><span class="check">✓</span> Custom commands</li>
-          <li class="on"><span class="check">✓</span> Priority support</li>
-          <li class="on"><span class="check">✓</span> Web panel builders</li>
-          <li class="on"><span class="check">✓</span> Analytics dashboard</li>
-        </ul>
-        <a href="https://panel.validate-bot.com" class="plan-btn plan-btn-outline">Go Enterprise</a>
-      </div>
+      <div class="prod-name">Bratwurst</div>
+      <div class="prod-price">3,50\$</div>
     </div>
-    <p style="text-align:center;margin-top:1.25rem;font-size:0.8rem;color:var(--text-dim)">
-      TikTok Live module available as a separate add-on — contact us on Discord for pricing.
-    </p>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d11" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c11"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d11)" clip-path="url(#c11)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥓</div>
+      </div>
+      <div class="prod-name">Schinken</div>
+      <div class="prod-price">4,80\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d12" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c12"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d12)" clip-path="url(#c12)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥩</div>
+      </div>
+      <div class="prod-name">Rindfleisch</div>
+      <div class="prod-price">8,50\$</div>
+    </div>
+
   </div>
-</section>
+</div>
 
-<!-- CTA -->
-<section id="add" style="padding:4rem 2rem">
-  <div class="container">
-    <div class="cta-wrap fade-in">
-      <div class="section-eyebrow" style="justify-content:center;display:flex">Get started</div>
-      <h2>Add VALIDATE to your server</h2>
-      <p>Free plan included — no credit card required. Takes 30 seconds.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative">
-        <a href="https://discord.com/oauth2/authorize?client_id=1507319927407640637&permissions=8&integration_type=0&scope=bot" class="btn btn-primary btn-lg">Add to Discord — Free</a>
-        <a href="https://panel.validate-bot.com" class="btn btn-ghost btn-lg">Open Dashboard</a>
+<!-- PAGE 5: BROT & SNACKS -->
+<div class="page product-page">
+  <div class="products-grid">
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d13" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c13"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d13)" clip-path="url(#c13)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥖</div>
       </div>
+      <div class="prod-name">Brot</div>
+      <div class="prod-price">2,20\$</div>
     </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d14" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c14"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d14)" clip-path="url(#c14)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🥨</div>
+      </div>
+      <div class="prod-name">Brezel</div>
+      <div class="prod-price">1,50\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d15" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c15"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d15)" clip-path="url(#c15)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍟</div>
+      </div>
+      <div class="prod-name">Chips</div>
+      <div class="prod-price">2,80\$</div>
+    </div>
+
+    <div class="product-item">
+      <div class="star-container">
+        <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="d16" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.3" fill="#d4a000" opacity="0.5"/></pattern><clipPath id="c16"><polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62"/></clipPath></defs>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="#FFD700"/>
+          <rect x="0" y="0" width="320" height="300" fill="url(#d16)" clip-path="url(#c16)"/>
+          <polygon points="160,6 181,62 228,28 216,86 270,74 242,118 288,134 252,166 288,190 244,198 260,250 214,234 194,282 160,250 126,282 106,234 60,250 76,198 32,190 68,166 32,134 78,118 50,74 104,86 92,28 139,62" fill="none" stroke="#dd0000" stroke-width="9"/>
+        </svg>
+        <div class="product-img">🍪</div>
+      </div>
+      <div class="prod-name">Keks</div>
+      <div class="prod-price">1,90\$</div>
+    </div>
+
   </div>
-</section>
+</div>
 
-<footer>
-  <a href="/" class="footer-logo"><div class="logo-dot"></div>VALIDATE</a>
-  <ul class="footer-links">
-    <li><a href="#">Terms of Service</a></li>
-    <li><a href="#">Privacy Policy</a></li>
-    <li><a href="https://discord.gg/2Mk82mSYjW">Support Server</a></li>
-    <li><a href="https://panel.validate-bot.com">Dashboard</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 VALIDATE</div>
-</footer>
-
-<script>
-const COMMANDS = [
-  {name:'/ticket_setup',desc:'Setup wizard for the ticket system',cat:'tickets',tier:'free'},
-  {name:'/ticket_panel',desc:'Send a ticket panel to a channel',cat:'tickets',tier:'free'},
-  {name:'/ticket_setstaffrole',desc:'Set the staff role for tickets',cat:'tickets',tier:'free'},
-  {name:'/ticket_settranscript',desc:'Set the transcript log channel',cat:'tickets',tier:'free'},
-  {name:'/ticket_setvip',desc:'Set the VIP role for high priority',cat:'tickets',tier:'pro'},
-  {name:'/ticket_setautoclose',desc:'Set auto-close timer for tickets',cat:'tickets',tier:'free'},
-  {name:'/ticket_queue',desc:'View the current ticket queue',cat:'tickets',tier:'free'},
-  {name:'/verify_setup',desc:'Send the verification button',cat:'community',tier:'free'},
-  {name:'/verify_setrole',desc:'Set the verification role',cat:'community',tier:'free'},
-  {name:'/autorole_set',desc:'Set auto-role assigned on join',cat:'community',tier:'free'},
-  {name:'/rolemenu',desc:'Create a role selection menu',cat:'community',tier:'free'},
-  {name:'/reactionrole_add',desc:'Add a reaction role to a message',cat:'community',tier:'free'},
-  {name:'/welcome_setup',desc:'Set the welcome channel and message',cat:'community',tier:'free'},
-  {name:'/leave_setup',desc:'Set the leave message channel',cat:'community',tier:'free'},
-  {name:'/taal',desc:'Set the bot language for this server',cat:'admin',tier:'pro'},
-  {name:'/giveaway',desc:'Start a timed giveaway',cat:'community',tier:'pro'},
-  {name:'/giveaway_reroll',desc:'Pick a new winner for a giveaway',cat:'community',tier:'pro'},
-  {name:'/poll',desc:'Create a poll with up to 4 options',cat:'community',tier:'free'},
-  {name:'/poll_ja_nee',desc:'Create a simple yes/no poll',cat:'community',tier:'free'},
-  {name:'/suggest',desc:'Submit a suggestion',cat:'community',tier:'free'},
-  {name:'/suggestion_setup',desc:'Set the suggestion channel',cat:'admin',tier:'free'},
-  {name:'/rank',desc:'View your XP rank and level',cat:'community',tier:'pro'},
-  {name:'/leaderboard',desc:'View the XP leaderboard',cat:'community',tier:'pro'},
-  {name:'/setxp',desc:'Set XP for a user',cat:'admin',tier:'pro'},
-  {name:'/level_setcategory',desc:'Set the level-up announcement channel',cat:'admin',tier:'pro'},
-  {name:'/starboard_setup',desc:'Set up the starboard channel',cat:'admin',tier:'pro'},
-  {name:'/stats_setup',desc:'Create statistics voice channels',cat:'admin',tier:'pro'},
-  {name:'/verjaardag_stel_in',desc:'Set your birthday',cat:'community',tier:'pro'},
-  {name:'/verjaardagen',desc:'View upcoming birthdays',cat:'community',tier:'pro'},
-  {name:'/verjaardag_kanaal',desc:'Set the birthday announcement channel',cat:'admin',tier:'pro'},
-  {name:'/warn',desc:'Warn a member',cat:'moderation',tier:'free'},
-  {name:'/mute',desc:'Timeout a member',cat:'moderation',tier:'free'},
-  {name:'/unmute',desc:'Remove a timeout',cat:'moderation',tier:'free'},
-  {name:'/ban',desc:'Ban a member from the server',cat:'moderation',tier:'free'},
-  {name:'/kick',desc:'Kick a member from the server',cat:'moderation',tier:'free'},
-  {name:'/clear',desc:'Delete messages in bulk',cat:'moderation',tier:'free'},
-  {name:'/slowmode',desc:'Set slowmode in a channel',cat:'moderation',tier:'free'},
-  {name:'/automod_unlock',desc:'Unlock server after auto-lockdown',cat:'moderation',tier:'pro'},
-  {name:'/mc_status',desc:'Check Minecraft server status',cat:'minecraft',tier:'pro'},
-  {name:'/mc_setup',desc:'Set up live MC status channel',cat:'minecraft',tier:'pro'},
-  {name:'/mc_cmd',desc:'Send a command to the MC server',cat:'minecraft',tier:'enterprise'},
-  {name:'/apply_setup',desc:'Create a staff application panel',cat:'admin',tier:'pro'},
-  {name:'/solliciteer',desc:'Apply for a staff position',cat:'community',tier:'pro'},
-  {name:'/staff_add',desc:'Add a staff member',cat:'admin',tier:'enterprise'},
-  {name:'/staff_remove',desc:'Remove a staff member',cat:'admin',tier:'enterprise'},
-  {name:'/staff_list',desc:'View all staff members',cat:'admin',tier:'free'},
-  {name:'/cmd_add',desc:'Add a custom command',cat:'admin',tier:'enterprise'},
-  {name:'/cmd_remove',desc:'Remove a custom command',cat:'admin',tier:'enterprise'},
-  {name:'/cmd_list',desc:'View all custom commands',cat:'admin',tier:'enterprise'},
-  {name:'/logs_setup',desc:'Set the mod log channel',cat:'admin',tier:'free'},
-  {name:'/userinfo',desc:'View info about a user',cat:'community',tier:'free'},
-  {name:'/serverinfo',desc:'View server information',cat:'community',tier:'free'},
-  {name:'/avatar',desc:'View a user\'s avatar',cat:'community',tier:'free'},
-  {name:'/announce',desc:'Send an announcement embed',cat:'admin',tier:'free'},
-  {name:'/tiktok_add',desc:'Track a TikTok creator',cat:'community',tier:'addon'},
-  {name:'/tiktok_remove',desc:'Remove a tracked creator',cat:'community',tier:'addon'},
-  {name:'/tiktok_channel',desc:'Set the TikTok live alerts channel',cat:'admin',tier:'addon'},
-  {name:'/tiktok_list',desc:'View all tracked creators',cat:'admin',tier:'addon'},
-  {name:'/admin_setplan',desc:'Set the plan for a server',cat:'admin',tier:'free'},
-  {name:'/admin_servers',desc:'View all servers using the bot',cat:'admin',tier:'free'},
-];
-
-const tierColors = {
-  free: {bg:'rgba(74,222,128,0.08)',color:'#4ade80',label:'Free'},
-  pro: {bg:'rgba(123,111,240,0.1)',color:'#a99ef5',label:'Pro'},
-  enterprise: {bg:'rgba(251,191,36,0.08)',color:'#fbbf24',label:'Enterprise'},
-  addon: {bg:'rgba(248,113,113,0.08)',color:'#f87171',label:'Add-on'},
-};
-
-let currentFilter = 'all';
-
-function filterCmds(cat, btn) {
-  currentFilter = cat;
-  document.querySelectorAll('.cmd-filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCmds();
-}
-
-function renderCmds() {
-  const grid = document.getElementById('cmds-grid');
-  const filtered = currentFilter === 'all' ? COMMANDS : COMMANDS.filter(c => c.cat === currentFilter);
-  grid.innerHTML = filtered.map(c => {
-    const t = tierColors[c.tier];
-    return `<div class="cmd-card">
-      <div class="cmd-name">${c.name}</div>
-      <div class="cmd-desc">${c.desc}</div>
-      <span class="cmd-badge" style="background:${t.bg};color:${t.color}">${t.label}</span>
-    </div>`;
-  }).join('');
-}
-
-renderCmds();
-
-// Intersection observer for fade-ins
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
